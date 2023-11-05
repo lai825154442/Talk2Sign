@@ -4,7 +4,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 st.set_page_config(layout="wide", page_title="Voice to Sign Language")
 
