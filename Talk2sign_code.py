@@ -4,15 +4,13 @@ from PIL import Image
 import requests
 from io import BytesIO
 
-openai.api_key = "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"
-
 st.set_page_config(layout="wide", page_title="Voice to Sign Language")
 
 st.write("## Turn voice to sign language")
 st.write(
     ":dog: Try uploading an mp3 file to form the sign language. This code is open source and modified by [BackgroundRemoval](https://github.com/tyler-simons/BackgroundRemoval) on GitHub."
 )
-st.sidebar.write("## Upload mp3 file :gear:")
+st.sidebar.write("## Upload mp3 file and api key :gear:")
 
 def upload_mp3(upload):
     audio_file = upload
@@ -53,6 +51,7 @@ def sl_output(my_upload):
         st.image(image)
 
 my_upload = st.sidebar.file_uploader("Upload mp3 file", type=["mp3"])
+api_key = st.sidebar.text_input(label = "Please provide api key from OpenAI")
 
 if my_upload is not None:
     sl_output(my_upload)
@@ -63,3 +62,6 @@ if st.button("Regenerate Results"):
 
 else:
     st.error("Please upload an mp3 file.")
+
+if  api_key is not None:
+    openai.api_key = api_key
